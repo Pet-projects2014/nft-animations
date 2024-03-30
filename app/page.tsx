@@ -1,95 +1,78 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import Header from '@/app/Components/Header/Header';
+import styled from 'styled-components';
+import SectionLayout from '@/app/Components/SectionLayout';
+import Card from '@/app/Components/Card';
+import { cards } from './utils/cards';
+import Fullpage from '@/app/Components/Fullpage';
+import TextSection from '@/app/TextSection';
+import Footer from '@/app/Components/Footer';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <>
+      <Header />
+      <MainStyled>
+        <SectionLayout>
+          <div className="cards">
+            {cards.map((card, index) => {
+              return <Card key={index} title={card?.title} description={card?.description} image={card?.image} />;
+            })}
+          </div>
+        </SectionLayout>
+        <Fullpage />
+        <SectionLayout>
+          <div className="cards">
+            {cards.map((card, index) => {
+              return <Card key={index} title={card?.title} description={card?.description} image={card?.image} />;
+            })}
+          </div>
+        </SectionLayout>
+        <SectionLayout>
+          <TextSection />
+        </SectionLayout>
+        <SectionLayout>
+          <div className="video">
+            <iframe
+              width="1280"
+              height="704"
+              src="https://www.youtube.com/embed/4PALQUzjzls"
+              title="Смешные жирные животные-анимационный короткометражный фильм | анимационные мультфильмы"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </SectionLayout>
+        <SectionLayout>
+          <TextSection />
+        </SectionLayout>
+        <Footer />
+      </MainStyled>
+    </>
   );
 }
+
+const MainStyled = styled.main`
+  min-height: 100vh;
+  width: 100%;
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(5, 30rem);
+    gap: 4rem;
+  }
+
+  .video {
+    padding: 2rem;
+    background-color: #161616;
+    border-radius: 1rem;
+    iframe {
+      border: none;
+      width: 100%;
+      height: 52rem;
+    }
+  }
+`;
