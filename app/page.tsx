@@ -8,6 +8,7 @@ import { cards } from './utils/cards';
 import Fullpage from '@/app/Components/Fullpage';
 import TextSection from '@/app/TextSection';
 import Footer from '@/app/Components/Footer';
+import ZoomSection from '@/app/Components/ZoomSection';
 
 export default function Home() {
   return (
@@ -45,6 +46,9 @@ export default function Home() {
               allowFullScreen
             ></iframe>
           </div>
+        </SectionLayout>
+        <SectionLayout>
+          <ZoomSection></ZoomSection>
         </SectionLayout>
         <SectionLayout>
           <TextSection />
